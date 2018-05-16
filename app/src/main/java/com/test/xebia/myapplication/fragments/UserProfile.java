@@ -19,6 +19,7 @@ import com.test.xebia.myapplication.R;
 public class UserProfile extends Fragment implements View.OnClickListener  {
     private TextView f_name,l_name,dob,add1,add2,city;
     private Button addMore;
+    private String name_s,name_l,dob_s,add1_s,add2_s,city_s;
 
     public UserProfile() {
     }
@@ -27,6 +28,12 @@ public class UserProfile extends Fragment implements View.OnClickListener  {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_userprofile, container, false);
+        name_s = getArguments().getString("f_name");
+        name_l = getArguments().getString("l_name");
+        dob_s = getArguments().getString("dob");
+        add1_s= getArguments().getString("address1");
+        add2_s = getArguments().getString("address2");
+        city_s = getArguments().getString("city");
 
 
         f_name = (TextView) view.findViewById(R.id.first_name);
@@ -37,8 +44,19 @@ public class UserProfile extends Fragment implements View.OnClickListener  {
         city = (TextView) view.findViewById(R.id.city);
         addMore = (Button) view.findViewById(R.id.btn_addmore);
         addMore.setOnClickListener(this);
+         setDataInTextView();
 
         return view;
+    }
+
+    private void setDataInTextView() {
+        f_name.setText(name_s);
+        l_name.setText(name_l);
+        dob.setText(dob_s);
+        add1.setText(add1_s);
+        add2.setText(add2_s);
+        city.setText(city_s);
+
     }
 
     @Override

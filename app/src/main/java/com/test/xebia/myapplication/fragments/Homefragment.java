@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.test.xebia.myapplication.R;
 
@@ -37,27 +38,34 @@ public class Homefragment extends Fragment implements View.OnClickListener {
         inputDob = (EditText) view.findViewById(R.id.input_dob);
         btnSignUp = (Button) view.findViewById(R.id.btn_cont);
         btnSignUp.setOnClickListener(this);
-        inputDob.setOnClickListener(this);
 
-    return view;
+        return view;
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        if(id == R.id.btn_cont) {
+        if (id == R.id.btn_cont) {
+            String f_name = inputFirstName.getText().toString();
+            String l_name = inputLastname.getText().toString();
+            String dob = inputDob.getText().toString();
+            if (f_name.matches("") && l_name.matches("") && dob.matches("")) {
+                Toast.makeText(getActivity(), "Please add all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            // Determine what fragment to start in. This is done through checking if the user
-            // is logged in or not.
             Fragment startingFragment;
             String startingFragmentTag = null;
             startingFragment = new Addressfragment();
+            Bundle args = new Bundle();
+            args.putString("f_name", f_name);
+            args.putString("l_name", l_name);
+            args.putString("dob", dob);
+            startingFragment.setArguments(args);
             fragmentTransaction.replace(R.id.home_fragment_container, startingFragment);
             fragmentTransaction.commit();
-
-        }else if(id == R.id.input_dob){
 
         }
 
