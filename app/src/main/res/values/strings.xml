@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">User Profile</string>
+    <string name="app_home">Home</string>
+    <string name="app_add">Address</string>
+    <string name="but_cont">Continue</string>
+    <string name="but_save">Save</string>
+    <string name="but_add_another">Add another user</string>
+
+
+    <!--edittext hints-->
+    <string name="hint_first_name">first name</string>
+    <string name="hint_last_name">last name</string>
+    <string name="hint_add1">address1</string>
+    <string name="hint_add2">address2</string>
+    <string name="hint_dob">date of birth</string>
+
+
+</resources>
