@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,7 +25,7 @@ import com.test.xebia.myapplication.R;
 public class Addressfragment extends Fragment implements View.OnClickListener {
     private EditText add1, add2;
     private Button btnSignUp;
-    String f_name, l_name, dob,address1,address2,city;
+    String f_name, l_name, dob, address1, address2, city;
     MaterialSpinner spinner;
 
     public Addressfragment() {
@@ -33,6 +35,7 @@ public class Addressfragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_address, container, false);
+        getActivity().setTitle("Address");
         f_name = getArguments().getString("f_name");
         l_name = getArguments().getString("l_name");
         dob = getArguments().getString("dob");
@@ -42,7 +45,7 @@ public class Addressfragment extends Fragment implements View.OnClickListener {
         add2 = (EditText) view.findViewById(R.id.input_add2);
         btnSignUp = (Button) view.findViewById(R.id.btn_save);
         btnSignUp.setOnClickListener(this);
-         spinner = (MaterialSpinner) view.findViewById(R.id.spinner);
+        spinner = (MaterialSpinner) view.findViewById(R.id.spinner);
         spinner.setItems("Gurgaon", "Noida", "Delhi", "Faridabad");
         spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
 
@@ -55,6 +58,12 @@ public class Addressfragment extends Fragment implements View.OnClickListener {
         });
 
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -85,5 +94,17 @@ public class Addressfragment extends Fragment implements View.OnClickListener {
             fragmentTransaction.commit();
         }
 
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.action_exit).setVisible(true);
+        super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        getActivity().finish();
+        return  true;
     }
 }

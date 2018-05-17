@@ -5,10 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.test.xebia.myapplication.activities.MainActivity">
-
-    <FrameLayout
-        android:id="@+id/home_fragment_container"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/HeaderBar"
+            android:elevation="4dp"
+            />
+
+
+        <FrameLayout
+            android:id="@+id/home_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

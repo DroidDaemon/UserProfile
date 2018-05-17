@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,7 +34,7 @@ public class Homefragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-
+        getActivity().setTitle("Home");
         inputFirstName = (EditText) view.findViewById(R.id.input_first_name);
         inputLastname = (EditText) view.findViewById(R.id.input_last_name);
         inputDob = (EditText) view.findViewById(R.id.input_dob);
@@ -40,6 +42,12 @@ public class Homefragment extends Fragment implements View.OnClickListener {
         btnSignUp.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -70,4 +78,21 @@ public class Homefragment extends Fragment implements View.OnClickListener {
         }
 
     }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.action_exit).setVisible(true);
+        super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        getActivity().finish();
+        return  true;
+    }
+
+//    @Override
+//    public void onConfirmExit() {
+//        getActivity().finish();
+//    }
 }
